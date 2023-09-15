@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   buttonRegistrar: {
-    backgroundColor: 'white', // Cor de fundo verde claro
-    borderRadius: 20, // Borda redonda
+    backgroundColor: 'white', 
+    borderRadius: 20, 
     borderColor: 'lightgreen',
     borderWidth: 3,
     padding: 10,
