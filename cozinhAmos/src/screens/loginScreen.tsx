@@ -13,7 +13,7 @@ export default function LoginScreen() {
     <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} >
     <View style={styles.container}>
       <Image
-        source={require('../assets/logos/logo.png')}
+        source={require('../assets/logo.png')}
         style={styles.logo}
         />
         <Text style={styles.title}>CozinhAmos</Text>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    display: 'flex'
+    display: 'flex',
   },
   title: {
     fontSize: 24,

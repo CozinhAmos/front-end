@@ -1,20 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './components/loginScreen';
+import PerfilScreen from './src/screens/perfilScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React from 'react';
+import LoginScreen from './src/screens/loginScreen';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-    <LoginScreen />
-  </View>
+    <SafeAreaProvider>
+      <PerfilScreen></PerfilScreen>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
