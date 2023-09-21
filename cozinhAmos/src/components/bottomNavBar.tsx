@@ -8,7 +8,7 @@ const ProfileRoute = () => <Text>Perfil</Text>;
 const BottomNavBar = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'search',  focusedIcon: 'heart', unfocusedIcon: 'heart-outline'},
+    { key: 'search',  focusedIcon: 'magnify', unfocusedIcon: 'magnify'},
     { key: 'home', focusedIcon: 'home', unfocusedIcon: 'home-outline' },
     { key: 'profile', focusedIcon: 'history' },
   ]);
