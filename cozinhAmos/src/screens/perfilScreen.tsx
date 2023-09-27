@@ -60,12 +60,14 @@ const PerfilScreen = () => {
         </View>
 
         <View style={{ alignSelf: "center", margin: 20 }}>
-          <Button mode="contained" onPress={() => {}}>
+          <Button mode="contained" onPress={() => {}} style={{backgroundColor: "lightgreen"}}>
             Seguir
           </Button>
         </View>
 
         <View style={styles.card}>
+          <CardPostReceita></CardPostReceita>
+          <CardPostReceita></CardPostReceita>
           <CardPostReceita></CardPostReceita>
         </View>
 

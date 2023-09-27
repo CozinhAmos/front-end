@@ -10,7 +10,7 @@ export default function HomeScreen() {
             <View>
                 <Appbar.Header mode='center-aligned'>
                     <Appbar.Content title='CozinhAmos' />
-                    <Appbar.Action icon="add" onPress={() => { }} />
+                    
                 </Appbar.Header>
             </View>
 

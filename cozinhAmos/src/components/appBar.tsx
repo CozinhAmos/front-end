@@ -3,7 +3,7 @@ import { Appbar } from 'react-native-paper';
 
 const AppBar = () => (
   <Appbar.Header mode='center-aligned'>
-    <Appbar.Content title="CozinhAmos" />
+    <Appbar.Content title="CozinhAmos"/>
   </Appbar.Header>
 );
 

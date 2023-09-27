@@ -20,7 +20,7 @@ export default function CadastrarReceitaScreen() {
                 </View>
 
                 <View>
-                    <Text>
+                    <Text style={{fontSize: 21, textAlign:"center", fontWeight: "600", margin: 20}}>
                         Cadastre sua receita
                     </Text>
                 </View>
@@ -36,7 +36,7 @@ export default function CadastrarReceitaScreen() {
                     }} />
                 </View>
 
-                <View>
+                <View style={{padding: 20}}>
                     <CozinhAmosTextInput
                         label="Nome do prato"
                         value={nome}
@@ -63,10 +63,10 @@ export default function CadastrarReceitaScreen() {
                     paddingVertical: 8,
                     justifyContent: 'space-around',
                 }}>
-                    <Button mode='contained' onPress={() => { }}>
+                    <Button style={{backgroundColor: "red"}} mode='contained' onPress={() => { }}>
                         Descartar
                     </Button>
-                    <Button mode='contained' onPress={() => { }}>
+                    <Button style={{backgroundColor: "lightgreen"}} mode='contained' onPress={() => { }}>
                         Cadastrar
                     </Button>
                 </View>

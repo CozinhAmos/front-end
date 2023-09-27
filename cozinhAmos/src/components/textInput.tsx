@@ -20,6 +20,7 @@ const CozinhAmosTextInput: React.FC<CozinhAmosTextInput> = ({
   return (
     <View style={styles.container}>
       <TextInput
+      style={styles.input}
         label={label}
         value={value}
         onChangeText={onChangeText}
@@ -33,7 +34,15 @@ const CozinhAmosTextInput: React.FC<CozinhAmosTextInput> = ({
 const styles = StyleSheet.create({
   container: {
     marginBottom: 16,
+    padding: 6,
+    
   },
+input:{
+  backgroundColor: "transparent",
+  borderColor: "green",
+  borderWidth: 1,
+}
+
 });
 
 export default CozinhAmosTextInput;

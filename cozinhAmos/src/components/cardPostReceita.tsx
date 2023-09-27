@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 export default function CardPostReceita() {
   return (
-    <View>
+    <View style={{margin: 5}}>
       <View style={style.header}>
         <View style={style.imgProfile}>
           <Avatar.Image size={55} source={require("../assets/logo.png")} />
@@ -30,6 +30,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     gap: -3,
     zIndex: 1,
+  
   },
 
   imgProfile: {

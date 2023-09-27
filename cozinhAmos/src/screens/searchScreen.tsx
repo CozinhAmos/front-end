@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function SearchScreen() {
   const data = [
-    { id: "00", nome: "Brigadeiro" },
+    { id: "00", nome: "Brigadeiro0" },
     { id: "01", nome: "Batata Recheada" },
     { id: "02", nome: "Cozido" },
     { id: "03", nome: "Panettone" },

@@ -14,7 +14,7 @@ export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {};
+  const handleLogin = () => { };
 
   return (
     <KeyboardAvoidingView
@@ -24,7 +24,12 @@ export default function LoginScreen() {
         <Image source={require("../assets/logo.png")} style={styles.logo} />
         <Text style={styles.title}>CozinhAmos</Text>
       </View>
-      <View style={styles.container}>
+      <View style={{
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        margin: 20,
+      }}>
         <TextInput
           style={styles.input}
           placeholder="Login"
@@ -54,6 +59,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
+    marginTop: 100,
+    margin: 20,
   },
   title: {
     fontSize: 24,
