@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import {
   View,
@@ -14,7 +15,23 @@ export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => { };
+  const handleLogin = async () => {
+    try {
+      console.log(email);
+
+      // const response = await axios.post('http://127.0.0.1:3333/login', {
+      //   email: email,
+      //   password: password
+      // });
+
+      // if(response.status == 200){
+        // router.replace('/home');
+        // vai para a home
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <KeyboardAvoidingView

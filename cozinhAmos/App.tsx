@@ -9,7 +9,7 @@ import SearchScreen from './src/screens/searchScreen';
 export default function App() {
   return (
     <SafeAreaProvider>
-      <CadastrarReceitaScreen />
+      <LoginScreen />
     </SafeAreaProvider>
   );
 }
