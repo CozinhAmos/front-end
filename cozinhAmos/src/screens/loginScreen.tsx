@@ -9,6 +9,7 @@ import {
   Pressable,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 
 export default function LoginScreen() {
@@ -17,20 +18,22 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     try {
-      console.log(email);
+      const response = await axios.post(baseUrl + 'login', {
+        email: email,
+        password: password
+      });
 
-      // const response = await axios.post('http://127.0.0.1:3333/login', {
-      //   email: email,
-      //   password: password
-      // });
+      if (response.status == 200) {
+        // ROUTE => vai para a home
+      }
 
-      // if(response.status == 200){
-        // router.replace('/home');
-        // vai para a home
-      // }
     } catch (error) {
-      console.log(error);
+      Alert.alert("Erro ao fazer o login", "Tente novamente mais tarde");
     }
+  };
+
+  const handleRegistrar = async () => {
+    // ROUTE => vai para tela de registrar
   };
 
   return (
@@ -63,7 +66,7 @@ export default function LoginScreen() {
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Entrar</Text>
         </Pressable>
-        <Pressable style={styles.buttonRegistrar} onPress={handleLogin}>
+        <Pressable style={styles.buttonRegistrar} onPress={handleRegistrar}>
           <Text style={styles.buttonTextRegistrar}>Registrar</Text>
         </Pressable>
       </View>
