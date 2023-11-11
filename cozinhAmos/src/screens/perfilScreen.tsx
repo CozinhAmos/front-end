@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,13 +7,33 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Alert
 } from "react-native";
 import { Appbar, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CardPostReceita from "../components/cardPostReceita";
 import BottomNavBar from "../components/bottomNavBar";
+import axios from "axios";
+import { baseUrl } from "../constantes";
 
 const PerfilScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setErrorFlag] = useState(false);
+
+  const getDataPerfil = async () => {
+    // ROUTE => vai para tela de registrar
+    try {
+      const response = await axios.get(baseUrl + 'user/id');
+      
+
+    }catch (e) {
+      console.log(e);
+    }
+
+  };
+
+
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>

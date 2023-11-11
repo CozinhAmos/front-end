@@ -12,6 +12,7 @@ import {
     ScrollView,
     Alert,
 } from "react-native";
+import { baseUrl } from "../constantes";
 
 export default function RegistrarScreen() {
     const [email, setEmail] = useState("");

@@ -11,6 +11,7 @@ import {
   Platform,
   Alert,
 } from "react-native";
+import { baseUrl } from "../constantes";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -18,12 +19,12 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(baseUrl + 'login', {
+      const response = await axios.post(baseUrl + 'user/login', {
         email: email,
         password: password
       });
 
-      if (response.status == 200) {
+      if (response.data.status == 'liberado') {
         // ROUTE => vai para a home
       }
 

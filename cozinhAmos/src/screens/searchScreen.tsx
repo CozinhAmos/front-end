@@ -3,21 +3,40 @@ import AppBar from "../components/appBar";
 import CozinhAmosSearchBar from "../components/searchBar";
 import BottomNavBar from "../components/bottomNavBar";
 import CardReceita from "../components/cardReceita";
-import { Card } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { baseUrl } from "../constantes";
+
+interface Receita {
+  id: string,
+  name: string,
+  likes: number,
+  User: {
+    id: string,
+    name: string,
+  }
+}
 
 export default function SearchScreen() {
-  const data = [
-    { id: "00", nome: "Brigadeiro0" },
-    { id: "01", nome: "Batata Recheada" },
-    { id: "02", nome: "Cozido" },
-    { id: "03", nome: "Panettone" },
-    { id: "04", nome: "Brigadeiro" },
-    { id: "05", nome: "Batata Recheada" },
-    { id: "06", nome: "Cozido" },
-    { id: "07", nome: "Panettone" },
-  ];
+
+  const [receitas, setReceitas] = useState<Receita[]>([]);
+
+  useEffect(() => {
+
+    const getReceitas = async () => {
+      try {
+        const response = await axios.get(baseUrl + "recepie/all");
+        setReceitas(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getReceitas();
+
+  }, []);
+
 
   return (
     <SafeAreaView
@@ -36,11 +55,11 @@ export default function SearchScreen() {
       </View>
 
       <FlatList
-        data={data}
-        keyExtractor={(item) => item.id}
+        data={receitas}
+        keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         renderItem={({ item }) => (
-          <CardReceita key={item.id} name={item.nome} />
+          <CardReceita key={item.id} name={item.name} />
         )}
       />
 

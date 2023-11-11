@@ -1,12 +1,42 @@
-import { KeyboardAvoidingView, Platform, ScrollView, View, Text, Image } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, View, Text, Image, Alert } from "react-native";
 import { Appbar, Button } from "react-native-paper";
 import CozinhAmosTextInput from "../components/textInput";
 import { useState } from "react";
+import axios from "axios";
+import { baseUrl } from "../constantes";
 
 export default function CadastrarReceitaScreen() {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [ingredientes, setIngredientes] = useState('');
+    const [preparo, setPreparo] = useState('');
+
+    const handleClearForm = () => {
+        setNome('');
+        setDescricao('');
+        setIngredientes('');
+        setPreparo('');
+      };
+
+    const handleCadastrarReceita = async () => {
+        try {
+          const response = await axios.post(baseUrl + 'recipe', {
+            userId: 'id',
+            name: nome,
+            description: descricao,
+            ingredients: ingredientes,
+            preparation: preparo
+          });
+    
+          if (response.status == 200) {
+            // ROUTE => vai para a home
+          }
+    
+        } catch (error) {
+         console.log(error);
+         Alert.alert('Erro ao cadastrar receita', "Tente novamente mais tarde");
+        }
+      };
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} >
@@ -63,10 +93,10 @@ export default function CadastrarReceitaScreen() {
                     paddingVertical: 8,
                     justifyContent: 'space-around',
                 }}>
-                    <Button style={{backgroundColor: "red"}} mode='contained' onPress={() => { }}>
+                    <Button style={{backgroundColor: "red"}} mode='contained' onPress={handleClearForm}>
                         Descartar
                     </Button>
-                    <Button style={{backgroundColor: "lightgreen"}} mode='contained' onPress={() => { }}>
+                    <Button style={{backgroundColor: "lightgreen"}} mode='contained' onPress={handleCadastrarReceita}>
                         Cadastrar
                     </Button>
                 </View>
