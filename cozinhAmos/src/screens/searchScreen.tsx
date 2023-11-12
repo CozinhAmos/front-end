@@ -26,7 +26,7 @@ export default function SearchScreen() {
 
     const getReceitas = async () => {
       try {
-        const response = await axios.get(baseUrl + "recepie/all");
+        const response = await axios.get(baseUrl + "recipe/all");
         setReceitas(response.data);
       } catch (e) {
         console.log(e);
