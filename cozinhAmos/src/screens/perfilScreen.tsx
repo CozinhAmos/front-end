@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert
+  Alert,
+  ActivityIndicator
 } from "react-native";
 import { Appbar, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,23 +16,40 @@ import CardPostReceita from "../components/cardPostReceita";
 import BottomNavBar from "../components/bottomNavBar";
 import axios from "axios";
 import { baseUrl } from "../constantes";
+import Perfil from "../interfaces/perfil";
+import Receita from "../interfaces/receita";
 
 const PerfilScreen = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setErrorFlag] = useState(false);
+  const [perfil, setPerfil] = useState<Perfil>();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const getDataPerfil = async () => {
-    // ROUTE => vai para tela de registrar
-    try {
-      const response = await axios.get(baseUrl + 'user/id');
-      
+  const [receitas, setReceitas] = useState<Receita[]>([]);
 
-    }catch (e) {
-      console.log(e);
+  useEffect(() => {
+
+    const getPerfil = async () => {
+      console.log(baseUrl + "user/" + (global as any).userId);
+      try {
+        const resposnse = await axios.get(baseUrl + "user/" + (global as any).userId);
+        setPerfil(resposnse.data);
+      } catch(e) {
+        console.log(e);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
-  };
+    getPerfil();
+    
+  }, []);
 
+  if (isLoading) {
+    return <ActivityIndicator size="large" />;
+  }
+
+  if (!perfil) {
+    return <Text>Não foi possível obter os dados do perfil.</Text>;
+  }
 
 
   return (
@@ -55,13 +73,13 @@ const PerfilScreen = () => {
 
         <View>
           <Text style={{ fontSize: 28, alignSelf: "center" }}>
-            Julia Amaral
+            {perfil.name}
           </Text>
         </View>
 
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
-            <Text style={{ fontSize: 24 }}>33</Text>
+            <Text style={{ fontSize: 24 }}>{perfil._count.following}</Text>
             <Text>Seguindo</Text>
           </View>
           <View
@@ -74,7 +92,7 @@ const PerfilScreen = () => {
               },
             ]}
           >
-            <Text style={{ fontSize: 24 }}>45</Text>
+            <Text style={{ fontSize: 24 }}>{perfil._count.followers}</Text>
             <Text>Seguidores</Text>
           </View>
         </View>
