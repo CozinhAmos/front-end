@@ -24,6 +24,11 @@ export default function CadastrarReceitaScreen() {
         console.log(descricao);
         console.log(ingredientes);
         console.log(preparo);
+        console.log((global as any).userId);
+        if(nome == '' || descricao == '' || ingredientes == '' || preparo == ''){
+            Alert.alert('Campos em branco', "Preencha todos os campos para cadastrar a sua receita");
+            return;
+        }
         try {
           const response = await axios.post(baseUrl + 'recipe', {
             userId: (global as any).userId,
@@ -93,6 +98,13 @@ export default function CadastrarReceitaScreen() {
                         value={ingredientes}
                         onChangeText={text => setIngredientes(text)}
                     />
+
+                    <CozinhAmosTextInput
+                        label="Modo de preparo"
+                        value={preparo}
+                        onChangeText={text => setPreparo(text)}
+                    />
+
                 </View>
 
                 <View style={{
