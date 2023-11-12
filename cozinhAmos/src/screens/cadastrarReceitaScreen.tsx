@@ -19,17 +19,26 @@ export default function CadastrarReceitaScreen() {
       };
 
     const handleCadastrarReceita = async () => {
+        console.log(baseUrl + 'recipe');
+        console.log(nome);
+        console.log(descricao);
+        console.log(ingredientes);
+        console.log(preparo);
         try {
           const response = await axios.post(baseUrl + 'recipe', {
-            userId: 'id',
+            userId: (global as any).userId,
             name: nome,
             description: descricao,
             ingredients: ingredientes,
             preparation: preparo
           });
+          
+          console.log('passou aqui');
+          console.log(response);
     
           if (response.status == 200) {
             // ROUTE => vai para a home
+            Alert.alert('Receita Cadastrada com sucesso');
           }
     
         } catch (error) {

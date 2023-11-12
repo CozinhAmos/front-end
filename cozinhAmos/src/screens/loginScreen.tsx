@@ -25,7 +25,13 @@ export default function LoginScreen() {
       });
 
       if (response.data.status == 'liberado') {
+        (global as any). userId = response.data.result.id;
+        (global as any). followId = response.data.result.followId;
+        (global as any). userEmail = response.data.result.email;
+        (global as any). userName = response.data.result.name;
         // ROUTE => vai para a home
+      } else {
+        Alert.alert('Acesso negado', "Usuário inválido");
       }
 
     } catch (error) {
