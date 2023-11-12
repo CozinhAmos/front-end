@@ -21,6 +21,10 @@ interface Receita {
 export default function SearchScreen() {
 
   const [receitas, setReceitas] = useState<Receita[]>([]);
+  const [filteredReceitas, setFilteredReceitas] = useState<Receita[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  console.log("aqui 1");
 
   useEffect(() => {
 
@@ -28,6 +32,7 @@ export default function SearchScreen() {
       try {
         const response = await axios.get(baseUrl + "recipe/all");
         setReceitas(response.data);
+        setFilteredReceitas(response.data); 
       } catch (e) {
         console.log(e);
       }
@@ -37,6 +42,17 @@ export default function SearchScreen() {
 
   }, []);
 
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    console.log("aqui 2");
+    // Filtra as receitas com base no texto de pesquisa
+    const filtered = receitas.filter(receita =>
+      receita.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setFilteredReceitas(filtered);
+  };
 
   return (
     <SafeAreaView
@@ -51,11 +67,11 @@ export default function SearchScreen() {
       </View>
 
       <View>
-        <CozinhAmosSearchBar />
+        <CozinhAmosSearchBar onChangeSearch={handleSearch} value={searchQuery} />
       </View>
 
       <FlatList
-        data={receitas}
+        data={filteredReceitas}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         renderItem={({ item }) => (
