@@ -20,6 +20,11 @@ export default function RegistrarScreen() {
     const [nome, setNome] = useState("");
 
     const handleRegistrar = async () => {
+        if(email == '' || password == '' || nome == ''){
+            Alert.alert("Campos em branco, preencha todos os campos em branco para se resgistrar");
+            return;
+        }
+        
         try {
             const response = await axios.post(baseUrl + 'user', {
               nome: nome,
