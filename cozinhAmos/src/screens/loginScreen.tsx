@@ -18,6 +18,10 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
+    if(email == "" || password == "") {
+      Alert.alert("Campos em branco", "Preencha todos os campos para realizar o login");
+      return;
+    }
     try {
       const response = await axios.post(baseUrl + 'user/login', {
         email: email,
@@ -33,6 +37,8 @@ export default function LoginScreen() {
       } else {
         Alert.alert('Acesso negado', "Usuário inválido");
       }
+
+      console.log((global as any). userId);
 
     } catch (error) {
       Alert.alert("Erro ao fazer o login", "Tente novamente mais tarde");
