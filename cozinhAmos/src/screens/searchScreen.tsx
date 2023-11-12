@@ -7,16 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../constantes";
-
-interface Receita {
-  id: string,
-  name: string,
-  likes: number,
-  User: {
-    id: string,
-    name: string,
-  }
-}
+import Receita from "../interfaces/receita";
 
 export default function SearchScreen() {
 
