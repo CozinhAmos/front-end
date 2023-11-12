@@ -22,14 +22,18 @@ export default function RegistrarScreen() {
     const handleRegistrar = async () => {
         try {
             const response = await axios.post(baseUrl + 'user', {
-              nome: nome,
-              email: email,
-              password: password
+                name: nome,
+                email: email,
+                password: password
             });
 
-            if(response.status == 200){
-            Alert.alert("Usuário cadastrado com sucesso", "Realize o login para acessar o aplicativo");
-            // ROUTE => volta para login
+            if (response.status == 200) {
+                (global as any).userId = response.data.id;
+                (global as any).followId = response.data.followId;
+                (global as any).userEmail = response.data.email;
+                (global as any).userName = response.data.name;
+                Alert.alert("Usuário cadastrado com sucesso",);
+                // ROUTE => vai para home
             }
         } catch (error) {
             console.log(error);
