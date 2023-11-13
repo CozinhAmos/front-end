@@ -8,7 +8,8 @@ import {
   Platform,
   ScrollView,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  FlatList
 } from "react-native";
 import { Appbar, Button } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -39,7 +40,20 @@ const PerfilScreen = () => {
       }
     }
 
+    const getReceitas = async () => {
+      try {
+        const resposnse = await axios.get(baseUrl + "recipe/my/" + (global as any).userId);
+        setReceitas(resposnse.data.recipes);
+        console.log(receitas);
+      } catch(e) {
+        console.log(e);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
     getPerfil();
+    getReceitas();
     
   }, []);
 
@@ -103,11 +117,13 @@ const PerfilScreen = () => {
           </Button>
         </View>
 
-        <View style={styles.card}>
-          <CardPostReceita></CardPostReceita>
-          <CardPostReceita></CardPostReceita>
-          <CardPostReceita></CardPostReceita>
-        </View>
+        <FlatList
+        data={receitas}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <CardPostReceita {...item} />
+        )}
+        />
 
         <View>
           <BottomNavBar></BottomNavBar>

@@ -1,4 +1,4 @@
-export const baseUrl = 'https://light-clocks-think.loca.lt/';
+export const baseUrl = 'https://mean-vans-clap.loca.lt/';
 
 (global as any).userEmail = '';
 (global as any).userId = '';

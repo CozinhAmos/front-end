@@ -11,7 +11,7 @@ import RegistrarScreen from './src/screens/registrarScreen';
 export default function App() {
   return (
     <SafeAreaProvider>
-      <PerfilScreen />
+      <HomeScreen />
     </SafeAreaProvider>
   );
 }

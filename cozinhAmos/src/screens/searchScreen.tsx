@@ -15,7 +15,6 @@ export default function SearchScreen() {
   const [filteredReceitas, setFilteredReceitas] = useState<Receita[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  console.log("aqui 1");
 
   useEffect(() => {
 
@@ -36,7 +35,6 @@ export default function SearchScreen() {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    console.log("aqui 2");
     // Filtra as receitas com base no texto de pesquisa
     const filtered = receitas.filter(receita =>
       receita.name.toLowerCase().includes(query.toLowerCase())

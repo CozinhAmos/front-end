@@ -1,7 +1,8 @@
 import { Avatar, Card, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
+import Receita from "../interfaces/receita";
 
-export default function CardPostReceita() {
+const CardPostReceita = (receita: Receita) => {
   return (
     <View style={{margin: 5}}>
       <View style={style.header}>
@@ -9,8 +10,8 @@ export default function CardPostReceita() {
           <Avatar.Image size={55} source={require("../assets/logo.png")} />
         </View>
         <View>
-          <Text style={style.nameRecipe}>Mac Chesse</Text>
-          <Text style={style.nameProfile}>Julia Sthal</Text>
+          <Text style={style.nameRecipe}>{receita.name}</Text>
+          <Text style={style.nameProfile}>{receita.User.name}</Text>
         </View>
       </View>
       <Card>
@@ -51,3 +52,5 @@ const style = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+export default CardPostReceita;
