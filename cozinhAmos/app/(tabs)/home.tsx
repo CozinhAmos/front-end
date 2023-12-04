@@ -1,15 +1,15 @@
-import { ActivityIndicator, ScrollView, View, FlatList } from "react-native";
-import AppBar from "../components/appBar";
-import CardPostReceita from "../components/cardPostReceita";
-import BottomNavBar from "../components/bottomNavBar";
-import { Appbar } from "react-native-paper";
-import Receita from "../interfaces/receita";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { baseUrl } from "../constantes";
+import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+
+import EditScreenInfo from '../../components/EditScreenInfo';
+import { Text, View } from '../../components/Themed';
+import CardPostReceita from '../../components/cardPostReceita';
+import Receita from '../../interfaces/receita';
+import { useEffect, useState } from 'react';
+import { baseUrl } from '../../constants/constantes';
+import axios from 'axios';
 
 export default function HomeScreen() {
-    const [receitas, setReceitas] = useState<Receita[]>([]);
+  const [receitas, setReceitas] = useState<Receita[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -34,26 +34,33 @@ export default function HomeScreen() {
         return <ActivityIndicator size="large" />;
     }
 
-    return (
-        <ScrollView >
-            <View>
-                <Appbar.Header mode='center-aligned'>
-                    <Appbar.Content title='CozinhAmos' />
-
-                </Appbar.Header>
-            </View>
-
-            <FlatList
+  return (
+    <View>
+      <FlatList
                 data={receitas}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <CardPostReceita {...item} />
                 )}
             />
-
-            <View>
-                <BottomNavBar></BottomNavBar>
-            </View>
-        </ScrollView>
-    )
+      
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: '80%',
+  },
+});

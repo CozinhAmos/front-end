@@ -7,7 +7,7 @@ const CardPostReceita = (receita: Receita) => {
     <View style={{margin: 5}}>
       <View style={style.header}>
         <View style={style.imgProfile}>
-          <Avatar.Image size={55} source={require("../assets/logo.png")} />
+          <Avatar.Image size={55} source={require("../assets/images/logo.png")} />
         </View>
         <View>
           <Text style={style.nameRecipe}>{receita.name}</Text>

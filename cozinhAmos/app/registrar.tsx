@@ -12,7 +12,8 @@ import {
     ScrollView,
     Alert,
 } from "react-native";
-import { baseUrl } from "../constantes";
+import { baseUrl } from "../constants/constantes";
+
 
 export default function RegistrarScreen() {
     const [email, setEmail] = useState("");
@@ -52,7 +53,7 @@ export default function RegistrarScreen() {
         >
             <ScrollView>
                 <View style={styles.container}>
-                    <Image source={require("../assets/logo.png")} style={styles.logo} />
+                    <Image source={require("../assets/images/logo.png")} style={styles.logo} />
                     <Text style={styles.title}>CozinhAmos</Text>
                 </View>
                 <View style={{

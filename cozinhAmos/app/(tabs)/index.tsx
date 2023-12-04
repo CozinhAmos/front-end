@@ -1,16 +1,15 @@
-import { ScrollView, View, FlatList } from "react-native";
-import AppBar from "../components/appBar";
-import CozinhAmosSearchBar from "../components/searchBar";
-import BottomNavBar from "../components/bottomNavBar";
-import CardReceita from "../components/cardReceita";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { baseUrl } from "../constantes";
-import Receita from "../interfaces/receita";
+import { FlatList, StyleSheet } from 'react-native';
 
-export default function SearchScreen() {
+import { View } from '../../components/Themed';
 
+import { useEffect, useState } from 'react';
+import Receita from '../../interfaces/receita';
+import axios from 'axios';
+import { baseUrl } from '../../constants/constantes';
+import CozinhAmosSearchBar from '../../components/searchBar';
+import CardReceita from '../../components/cardReceita';
+
+export default function BuscarScreen() {
   const [receitas, setReceitas] = useState<Receita[]>([]);
   const [filteredReceitas, setFilteredReceitas] = useState<Receita[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -22,7 +21,7 @@ export default function SearchScreen() {
       try {
         const response = await axios.get(baseUrl + "recipe/all");
         setReceitas(response.data);
-        setFilteredReceitas(response.data); 
+        setFilteredReceitas(response.data);
       } catch (e) {
         console.log(e);
       }
@@ -44,17 +43,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        backgroundColor: "white",
-      }}
-    >
-      <View>
-        <AppBar />
-      </View>
-
+    <View style={styles.container}>
       <View>
         <CozinhAmosSearchBar onChangeSearch={handleSearch} value={searchQuery} />
       </View>
@@ -68,9 +57,23 @@ export default function SearchScreen() {
         )}
       />
 
-      <View style={{ marginTop: 50 }}>
-        <BottomNavBar />
-      </View>
-    </SafeAreaView>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "white",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: '80%',
+  },
+});

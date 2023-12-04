@@ -11,14 +11,15 @@ import {
   Platform,
   Alert,
 } from "react-native";
-import { baseUrl } from "../constantes";
+import { Link, Stack } from "expo-router";
+import { baseUrl } from "../constants/constantes";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    if(email == "" || password == "") {
+    if (email == "" || password == "") {
       Alert.alert("Campos em branco", "Preencha todos os campos para realizar o login");
       return;
     }
@@ -29,16 +30,16 @@ export default function LoginScreen() {
       });
 
       if (response.data.status == 'liberado') {
-        (global as any). userId = response.data.result.id;
-        (global as any). followId = response.data.result.followId;
-        (global as any). userEmail = response.data.result.email;
-        (global as any). userName = response.data.result.name;
+        (global as any).userId = response.data.result.id;
+        (global as any).followId = response.data.result.followId;
+        (global as any).userEmail = response.data.result.email;
+        (global as any).userName = response.data.result.name;
         // ROUTE => vai para a home
       } else {
         Alert.alert('Acesso negado', "Usuário inválido");
       }
 
-      console.log((global as any). userId);
+      console.log((global as any).userId);
 
     } catch (error) {
       Alert.alert("Erro ao fazer o login", "Tente novamente mais tarde");
@@ -54,7 +55,8 @@ export default function LoginScreen() {
       behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
       <View style={styles.container}>
-        <Image source={require("../assets/logo.png")} style={styles.logo} />
+        <Stack.Screen options={{ title: "Login" }} />
+        <Image source={require("../assets/images/logo.png")} style={styles.logo} />
         <Text style={styles.title}>CozinhAmos</Text>
       </View>
       <View style={{
@@ -79,9 +81,12 @@ export default function LoginScreen() {
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Entrar</Text>
         </Pressable>
-        <Pressable style={styles.buttonRegistrar} onPress={handleRegistrar}>
-          <Text style={styles.buttonTextRegistrar}>Registrar</Text>
-        </Pressable>
+
+        <Link href={'/registrar'}>
+          <Pressable style={styles.buttonRegistrar} onPress={handleRegistrar}>
+            <Text style={styles.buttonTextRegistrar}>Registraaaar</Text>
+          </Pressable>
+        </Link>
       </View>
     </KeyboardAvoidingView>
   );

@@ -1,4 +1,4 @@
-export const baseUrl = 'https://mean-vans-clap.loca.lt/';
+export const baseUrl = 'https://cuddly-phones-hug.loca.lt/';
 
 (global as any).userEmail = '';
 (global as any).userId = '';
