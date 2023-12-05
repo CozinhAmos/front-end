@@ -11,7 +11,7 @@ import {
   Platform,
   Alert,
 } from "react-native";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, router } from "expo-router";
 import { baseUrl } from "../constants/constantes";
 
 export default function LoginScreen() {
@@ -34,7 +34,7 @@ export default function LoginScreen() {
         (global as any).followId = response.data.result.followId;
         (global as any).userEmail = response.data.result.email;
         (global as any).userName = response.data.result.name;
-        // ROUTE => vai para a home
+        router.replace('/(tabs)/');
       } else {
         Alert.alert('Acesso negado', "Usuário inválido");
       }
@@ -47,7 +47,7 @@ export default function LoginScreen() {
   };
 
   const handleRegistrar = async () => {
-    // ROUTE => vai para tela de registrar
+    router.push('/registrar');
   };
 
   return (
@@ -82,11 +82,9 @@ export default function LoginScreen() {
           <Text style={styles.buttonText}>Entrar</Text>
         </Pressable>
 
-        <Link href={'/registrar'}>
-          <Pressable style={styles.buttonRegistrar} onPress={handleRegistrar}>
-            <Text style={styles.buttonTextRegistrar}>Registraaaar</Text>
-          </Pressable>
-        </Link>
+        <Pressable style={styles.buttonRegistrar} onPress={handleRegistrar}>
+          <Text style={styles.buttonTextRegistrar}>Registrar</Text>
+        </Pressable>
       </View>
     </KeyboardAvoidingView>
   );

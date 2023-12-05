@@ -13,6 +13,7 @@ import {
     Alert,
 } from "react-native";
 import { baseUrl } from "../constants/constantes";
+import { router } from "expo-router";
 
 
 export default function RegistrarScreen() {
@@ -32,6 +33,8 @@ export default function RegistrarScreen() {
                 email: email,
                 password: password
             });
+            console.log('response');
+            console.log(response);
 
             if (response.status == 200) {
                 (global as any).userId = response.data.id;
@@ -39,7 +42,7 @@ export default function RegistrarScreen() {
                 (global as any).userEmail = response.data.email;
                 (global as any).userName = response.data.name;
                 Alert.alert("Usuário cadastrado com sucesso",);
-                // ROUTE => vai para home
+                router.replace('/(tabs)/');
             }
         } catch (error) {
             console.log(error);
