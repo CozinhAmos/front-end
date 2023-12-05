@@ -13,7 +13,9 @@ export default function CardReceita(props: PropsCardReceita) {
       </View>
       <Card>
         <Card.Cover
-          source={{ uri: "https://picsum.photos/700" }}
+          source={{
+            uri: "https://yt3.googleusercontent.com/ytc/APkrFKatmClM4N0mkem4XewrHLGbeB7RGBM3ZKMrymzH=s900-c-k-c0x00ffffff-no-rj",
+          }}
           style={style.cardCover}
         />
       </Card>
